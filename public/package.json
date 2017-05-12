@@ -1,0 +1,19 @@
+{
+    "name": "Mock_Weather",
+    "version": "1.0.0",
+    "main": "index.html",
+    "description" : "Weather Application which triggers different APIs",
+    "window" : {
+"toolbar": false,
+    	"min_width" : 800,
+    	"min_height" : 600,
+    	"icon" : "Weather_Icon.png"
+ },
+    "scripts": {
+
+"test": "echo \"Error: no test specified\" && exit 1"
+
+    },
+    "author" : "Pranith",
+    "license": "MIT"
+}

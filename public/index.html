@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl"> 
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Weather App </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+          <ul class="nav navbar-nav">
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div role="main" class="container theme-showcase">
+      <div class="" style="margin-top:90px;">
+        <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand">Search weather</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <form class="navbar-form navbar-left" ng-submit="searchWeather()" role="search">
+                                <div class="form-group">
+                                    <input required="required" type="text" class="form-control" ng-model="assetName"  placeholder="Enter city name..">
+                                    <select required="required" class="form-control" name="selectedApi" ng-model="selectedApi">
+                                    <option value="">Select an API</option>
+                                        <option value="yahoo">Yahoo API</option>
+                                        <option value="openweather">Open Weather API</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-info" >Submit</button>
+                            </form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a>{{totalCount}} Result(s) Found</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4" ng-repeat="item in items" ng-cloak>
+
+                        <div class="thumbnail">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="http://openweathermap.org/img/w/{{item.weather[0].icon}}.png" alt="" style="max-width: 50px;">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{item.name}}, {{item.sys.country}}</h4>
+                                    <h4><span class="label label-primary">{{item.main.temp}}°С</span></h4>
+                                    <span>{{item.weather[0].main}}, {{item.weather[0].description}}</span><br>
+                                    <span>Geo coords [ {{item.coord.lon}}, {{item.coord.lat}} ]</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-4" ng-if="results.count > 0"  ng-cloak>
+
+                        <div class="thumbnail">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="{{results.results.channel.image.url}}" alt="" style="max-width: 50px;">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{results.results.channel.description}}</h4>
+                                    <h4><span class="label label-primary">{{results.results.channel.item.condition.temp}}°F</span></h4>
+                                    <span>{{results.results.channel.item.condition.text}}</span><br>
+                                    <span>Geo coords [ {{results.results.channel.item.lat}}, {{results.results.channel.item.long}} ]</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+      </div>
+    </div>
+
+    <div ng-if="totalCount == 0">No result Found</div>
+
+<script src="./weather/weather.js"></script>
+<script>
+
+</script>
+
+</body>
+</html>
